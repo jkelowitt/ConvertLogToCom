@@ -46,18 +46,15 @@ def main():
     # Get the files to parse
     files = glob(dir + "/*.log")
 
-    # Make the output folder
-    make_output_folder(new_dir)
-
     # Parse geometry and write the files
     for file in files:
         data = parse_opt_geom_from_log(file)
         atoms = [Atom(a[0], (a[1], a[2], a[3])) for a in data]
         name = file.split("\\")[-1][:-4]
         molecule = Molecule(name, atoms)
-        write_job_to_com(molecule.atoms, title=molecule.name, output=dir + "\\" + new_dir, **settings)
+        write_job_to_com(molecule.atoms, title=molecule.name, output=new_dir, **settings)
 
-    return dir, new_dir
+    return new_dir
 
 
 if __name__ == "__main__":
@@ -68,7 +65,6 @@ if __name__ == "__main__":
     print("".center(50, "~"))
     print()
 
-    d, nd = main()
-    path_to_folder = d + '\\' + nd
+    new_dir = main()
 
-    input(f"Com files saved to {path_to_folder}. Press enter to exit.")
+    input(f"Com files saved to {new_dir}. Press enter to exit.")
