@@ -6,17 +6,9 @@ Molecule: A molecule class used to hold atoms and the bonds between those atoms.
 """
 
 from dataclasses import dataclass, field
-from math import sqrt
-
-from numba import njit
-
-from data_dicts import cov_rads, bond_threshold, atom_color
 
 
-@njit
-def distance(pt1: tuple[float, float, float], pt2: tuple[float, float, float]) -> float:
-    """Returns the distance between two three-dimensional points"""
-    return sqrt((pt1[0] - pt2[0]) ** 2 + (pt1[1] - pt2[1]) ** 2 + (pt1[2] - pt2[2]) ** 2)
+# from numba import njit
 
 
 # noinspection PyUnresolvedReferences
@@ -45,12 +37,7 @@ class Atom:
     name: str
     pos: tuple[float, float, float] = field(default=(0, 0, 0))
 
-    def __post_init__(self):
-        self.cov_radius: float = cov_rads[self.name]
-        self.color: tuple[float, float, float] = atom_color.get(self.name, (1, 0, 1))  # Default color magenta
 
-
-# noinspection PyUnresolvedReferences
 class Molecule:
     """
     A molecule class used to hold atoms and the bonds between those atoms.
@@ -104,25 +91,3 @@ class Molecule:
         Atom 2 will remain atom 2 even if atom 1 is replaced.
         """
         self.atoms[old_num] = new_atom
-
-    def make_bond_graph(self) -> None:
-        """
-        Creates a dictionary with an entry for every atom in the molecule. For each atom, find
-        the distance to every other atom. If the distance is within the sum of the covalent
-        radii for each atom (within some margin of error), they are bonded. This bond is recorded
-        in the dictionary entry for that atom.
-
-        This is one of the slowest functions in this entire program, second only to the save_figure
-        function. Any improvements to this function or its components yield massive returns.
-        """
-
-        self.bonds = dict()
-        for a in self.atoms:
-            new_bonds = []
-            for other in self.atoms:
-                max_bond_length = bond_threshold * (other.cov_radius + a.cov_radius)
-                d = distance(other.pos, a.pos)
-                if other != a and d <= max_bond_length:
-                    new_bonds.append(other)
-
-            self.bonds[a] = list(new_bonds).copy()
