@@ -6,10 +6,10 @@
 Take all the .log files in a given directory and make a new
 directory which has .com files for the log files.
 """
-from functions import make_output_folder
-from parsing import parse_opt_geom_from_log, yes_no, write_job_to_com
-from classes import Atom, Molecule
 from glob import glob
+
+from classes import Atom, Molecule
+from parsing import (parse_opt_geom_from_log, yes_no, write_job_to_com, make_output_folder, change_dict_values)
 
 
 def main():
