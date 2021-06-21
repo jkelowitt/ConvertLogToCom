@@ -57,6 +57,18 @@ def main():
         molecule = Molecule(name, atoms)
         write_job_to_com(molecule.atoms, title=molecule.name, output=dir + "\\" + new_dir, **settings)
 
+    return dir, new_dir
+
 
 if __name__ == "__main__":
-    main()
+    print("ConvertLogToCom".center(50, "~"))
+    print("Author: Jackson Elowitt")
+    print("Repo: https://github.com/jkelowitt/ConvertLogToCom")
+    print("Version: v2")
+    print("".center(50, "~"))
+    print()
+
+    d, nd = main()
+    path_to_folder = d + '\\' + nd
+
+    input(f"Com files saved to {path_to_folder}. Press enter to exit.")
