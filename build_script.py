@@ -64,9 +64,10 @@ c_string = [
 
     # '--exclude-module tinyaes',
     # '--exclude-module six',
-    # '--exclude-module numpy',
-    # '--exclude-module matplotlib',
+    '--exclude-module numpy',
+    '--exclude-module matplotlib',
     # '--icon icon.ico',
+    "--name ConvertLogToCom"
 ]
 
 fstr = " ".join(c_string)
