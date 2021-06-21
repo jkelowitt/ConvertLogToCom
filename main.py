@@ -9,7 +9,7 @@ directory which has .com files for the log files.
 from glob import glob
 
 from classes import Atom, Molecule
-from parsing import (parse_opt_geom_from_log, yes_no, write_job_to_com, make_output_folder, change_dict_values)
+from parsing import (parse_opt_geom_from_log, yes_no, write_job_to_com, change_dict_values)
 
 
 def main():
