@@ -8,10 +8,6 @@ Molecule: A molecule class used to hold atoms and the bonds between those atoms.
 from dataclasses import dataclass, field
 
 
-# from numba import njit
-
-
-# noinspection PyUnresolvedReferences
 @dataclass(eq=True, unsafe_hash=True)
 class Atom:
     """
