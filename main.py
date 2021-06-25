@@ -9,7 +9,7 @@ directory which has .com files for the log files.
 from glob import glob
 
 from classes import Atom, Molecule
-from parsing import parsing_dict
+from parsing import parsing_dict, yes_no, change_dict_values, write_job_to_com
 
 
 def main():
@@ -62,9 +62,6 @@ def main():
         done = False
         while not done:
             settings, done = change_dict_values(settings)
-
-    # Get the files to parse
-    files = glob(dir + "/*.log")
 
     # Parse geometry and write the files
     for file in files:
