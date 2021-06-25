@@ -83,7 +83,6 @@ if __name__ == "__main__":
     print("Repo: https://github.com/jkelowitt/ConvertToCom")
     print("Version: v2")
     print("".center(50, "~"))
-    print()
 
     new_dir = main()
 
