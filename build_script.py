@@ -67,7 +67,7 @@ c_string = [
     '--exclude-module numpy',
     '--exclude-module matplotlib',
     # '--icon icon.ico',
-    "--name ConvertLogToCom"
+    "--name ConvertToCom"
 ]
 
 fstr = " ".join(c_string)
