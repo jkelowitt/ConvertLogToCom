@@ -14,7 +14,27 @@ from parsing import parsing_dict
 
 def main():
     # From where to where
-    dir = input("Enter the directory of the .log files: ")
+    files = []
+    while not files:
+        # Get the directory from the user
+        print("\nEnter the directory which contains one of the following files.")
+        print("Valid file types:")
+        for ext in parsing_dict:
+            print(f"\t.{ext}")
+        directory = input("Directory: ")
+
+        # Get all the files
+        # which have a parsing function.
+        for ext in parsing_dict:
+            files += glob(f"{directory}/*.{ext}")
+
+        files.sort(key=lambda x: len(x))
+
+        # Check that there are valid files to be found.
+        if not files:
+            print("\nNo valid files found in the selected directory.")
+
+    # Choose a new folder location
     new_dir = input("Enter the name of the folder you'd like to save the com files to: ")
 
     # Get the parameters for the com file
@@ -48,7 +68,7 @@ def main():
 
     # Parse geometry and write the files
     for file in files:
-        data = parse_opt_geom_from_log(file)
+        data = parsing_dict[file[file.index(".") + 1:]](file)
         atoms = [Atom(a[0], (a[1], a[2], a[3])) for a in data]
         name = file.split("\\")[-1][:-4]
         molecule = Molecule(name, atoms)
