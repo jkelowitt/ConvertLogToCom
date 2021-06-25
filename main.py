@@ -78,9 +78,9 @@ def main():
 
 
 if __name__ == "__main__":
-    print("ConvertLogToCom".center(50, "~"))
+    print("ConvertToCom".center(50, "~"))
     print("Author: Jackson Elowitt")
-    print("Repo: https://github.com/jkelowitt/ConvertLogToCom")
+    print("Repo: https://github.com/jkelowitt/ConvertToCom")
     print("Version: v2")
     print("".center(50, "~"))
     print()
