@@ -78,9 +78,9 @@ if __name__ == "__main__":
     print("ConvertToCom".center(50, "~"))
     print("Author: Jackson Elowitt")
     print("Repo: https://github.com/jkelowitt/ConvertToCom")
-    print("Version: v2")
+    print("Version: v3")
     print("".center(50, "~"))
 
     new_dir = main()
 
-    input(f"Com files saved to {new_dir}. Press enter to exit.")
+    input(f"Com files saved to {new_dir} in the executable's directory. Press enter to exit.")
